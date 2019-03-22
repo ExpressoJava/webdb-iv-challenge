@@ -1,14 +1,12 @@
 
 exports.up = function(knex, Promise) {
-  return knex.schema.createTable('dishes', tbl => {
-    tbl.increments()
-    tbl
-      .string('dish_name', 128)
-      .notNullable()
-      
-  })
+  return knex.schema.createTable("dishes", tbl => {
+    tbl.increments();
+    tbl.string("name", 128).notNullable();
+    tbl.unique("name");
+  });
 };
-// undo function whatever in up table existed. 
+
 exports.down = function(knex, Promise) {
   return knex.schema.dropTableIfExists('dishes')
-};
+}
